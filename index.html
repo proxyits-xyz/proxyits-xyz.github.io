@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahmad Choirun Najib | Portfolio & Jurnal Digital</title>
+    <!-- Prevent flash of light in dark mode -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/main-BFJvNhPO.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-D7VN-oUl.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+

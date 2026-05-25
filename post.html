@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Artikel - Ahmad Choirun Najib</title>
+    <!-- Prevent flash of light in dark mode -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <!-- Google Fonts Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+              serif: ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
+              mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Smooth transitions */
+      html {
+        scroll-behavior: smooth;
+      }
+      .transition-theme {
+        transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#fdfdfc] text-[#1a1a1a] dark:bg-[#0a0a0d] text-[#f3f4f6] font-sans transition-theme selection:bg-emerald-100 dark:selection:bg-emerald-900/40">
+
+    <!-- Scroll Progress Line -->
+    <div id="scroll_progress" class="fixed top-0 left-0 h-[3px] bg-emerald-600 dark:bg-emerald-400 z-50 w-0 transition-all duration-75"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-[#fdfdfc]/80 dark:bg-[#0a0a0d]/80 border-b border-neutral-100 dark:border-neutral-900/60 transition-theme">
+      <div class="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
+        
+        <!-- Logo / Brand Link -->
+        <a href="index.html" class="flex items-center gap-2.5 group cursor-pointer">
+          <div class="h-9 w-9 rounded-lg bg-neutral-900 dark:bg-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-6">
+            <svg class="h-5 w-5 text-white dark:text-neutral-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div class="text-left">
+            <h1 class="font-serif font-bold text-lg md:text-xl tracking-tight leading-tight">
+              Ahmad Choirun Najib
+            </h1>
+            <p class="font-mono text-[10px] tracking-widest text-neutral-400 dark:text-neutral-500 uppercase">
+              Backend Developer & Data Architect
+            </p>
+          </div>
+        </a>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-4 text-sm font-medium">
+          <a href="index.html" class="px-3.5 py-2.5 rounded-lg text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/50 dark:hover:bg-neutral-900/40 transition-theme">
+            Beranda
+          </a>
+          
+          <div class="h-4 w-px bg-neutral-200 dark:bg-neutral-800"></div>
+
+          <!-- Theme Toggle -->
+          <button id="theme_toggle" class="p-2.5 rounded-lg text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white hover:bg-neutral-100/50 dark:hover:bg-neutral-900/60 transition-theme cursor-pointer" aria-label="Toggle Dark Mode">
+            <!-- Moon Icon -->
+            <svg id="moon_icon" class="h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+            <!-- Sun Icon -->
+            <svg id="sun_icon" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-4xl mx-auto px-6 py-12 md:py-16">
+      
+      <!-- Back to List button -->
+      <div class="mb-8">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white bg-neutral-100/60 hover:bg-neutral-100 dark:bg-neutral-900/50 dark:hover:bg-neutral-900 px-4 py-2 rounded-lg transition-theme group">
+          <svg class="h-4 w-4 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Kembali ke Jurnal
+        </a>
+      </div>
+
+      <!-- Loading Placeholder -->
+      <div id="loading" class="py-24 flex flex-col justify-center items-center space-y-4">
+        <div class="h-8 w-8 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-sm font-mono text-neutral-400">Pencarian data esai...</p>
+      </div>
+
+      <!-- Error Message Container -->
+      <div id="error_box" class="hidden py-12 px-6 rounded-xl border border-red-100 bg-red-50/50 text-red-700 text-center dark:border-red-950/25 dark:bg-red-950/10 dark:text-red-400">
+        <h3 class="font-serif text-xl font-bold mb-2">Terjadi Hambatan Memuat Data</h3>
+        <p id="error_message" class="text-sm">Gagal berkoneksi dengan posts.json</p>
+      </div>
+
+      <!-- Article Holder -->
+      <article id="article_container" class="hidden space-y-10">
+        
+        <!-- Metadata Header -->
+        <div class="space-y-4">
+          <span id="post_category" class="font-mono text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400"></span>
+          <h1 id="post_title" class="text-3xl md:text-5xl font-serif font-bold text-neutral-900 dark:text-white leading-tight tracking-tight"></h1>
+          
+          <div class="flex items-center gap-6 pt-2 text-xs md:text-sm text-neutral-400 dark:text-neutral-500 font-mono">
+            <div class="flex items-center gap-2">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span id="post_date"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span id="post_readtime"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Landscape Banner Image -->
+        <div class="relative aspect-[16/9] overflow-hidden rounded-2xl border border-neutral-100/70 dark:border-neutral-900/60 shadow-md">
+          <img id="post_image" src="" alt="" class="object-cover w-full h-full object-center" />
+        </div>
+
+        <!-- Article Rich Content Body -->
+        <div id="post_content" class="text-lg md:text-xl font-sans text-neutral-700 dark:text-neutral-300 leading-relaxed md:leading-loose tracking-wide space-y-6"></div>
+
+        <!-- Static Author Section -->
+        <div class="mt-16 pt-10 border-t border-neutral-100 dark:border-neutral-900/60 flex flex-col md:flex-row gap-6 items-center bg-neutral-50/50 dark:bg-neutral-900/20 p-6 md:p-8 rounded-2xl transition-theme">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Avatar Ahmad Choirun Najib" class="h-16 w-16 rounded-full object-cover grayscale" />
+          <div class="text-center md:text-left space-y-1.5 flex-1">
+            <h4 class="font-serif font-bold text-lg">Ditulis oleh Ahmad Choirun Najib</h4>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400">
+              Backend developer yang mendalami arsitektur microservices, pengembangan Android, analisis data, dan riset web semantik.
+            </p>
+          </div>
+          <a href="index.html" class="px-4 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-300 rounded-xl text-xs font-semibold tracking-wide transition-theme">
+            Buka Beranda Jurnal
+          </a>
+        </div>
+
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-neutral-100 dark:border-neutral-900/60 bg-[#fbfbfa] dark:bg-[#08080a] py-12 transition-theme">
+      <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-neutral-400 dark:text-neutral-500 font-mono">
+        <div class="flex items-center gap-2">
+          <span>© 2026 Ahmad Choirun Najib.</span>
+          <span>Semua Hak Cipta Dilindungi.</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://github.com/ahmadchoirunnajib" target="_blank" class="hover:text-emerald-500 transition-colors">GITHUB</a>
+          <span class="text-neutral-200 dark:text-neutral-800">|</span>
+          <a href="https://twitter.com/najib_choirun" target="_blank" class="hover:text-emerald-500 transition-colors">TWITTER</a>
+          <span class="text-neutral-200 dark:text-neutral-800">|</span>
+          <a href="https://instagram.com/najib.choirun" target="_blank" class="hover:text-emerald-500 transition-colors">INSTAGRAM</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Custom JavaScript Engine -->
+    <script>
+      // 1. Dark Mode Persistence logic
+      const themeToggle = document.getElementById('theme_toggle');
+      const sunIcon = document.getElementById('sun_icon');
+      const moonIcon = document.getElementById('moon_icon');
+
+      function syncIcons(isDark) {
+        if (isDark) {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        } else {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        }
+      }
+
+      function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+        syncIcons(isDark);
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const isCurrentlyDark = document.documentElement.classList.contains('dark');
+        if (isCurrentlyDark) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          syncIcons(false);
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          syncIcons(true);
+        }
+      });
+
+      // 2. Reading progress handler
+      window.addEventListener('scroll', () => {
+        const scrollBar = document.getElementById('scroll_progress');
+        const scrollDistance = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (scrollHeight > 0) {
+          const percent = (scrollDistance / scrollHeight) * 100;
+          scrollBar.style.width = percent + '%';
+        }
+      });
+
+      // 3. Fast standalone markdown translator
+      function translateMarkdownHTML(content) {
+        const paragraphs = content.split('\n');
+        let htmlOutput = '';
+        let insideUl = false;
+
+        paragraphs.forEach(line => {
+          const trimmed = line.trim();
+          if (!trimmed) {
+            if (insideUl) {
+              htmlOutput += '</ul>';
+              insideUl = false;
+            }
+            return;
+          }
+
+          if (trimmed.startsWith('### ')) {
+            if (insideUl) { htmlOutput += '</ul>'; insideUl = false; }
+            htmlOutput += `<h3 class="text-xl md:text-2xl font-serif font-semibold mt-10 mb-4 text-[#1a1a1a] dark:text-[#f3f4f6] transition-theme">${trimmed.slice(4)}</h3>`;
+          } else if (trimmed.startsWith('## ')) {
+            if (insideUl) { htmlOutput += '</ul>'; insideUl = false; }
+            htmlOutput += `<h2 class="text-2xl md:text-3xl font-serif font-semibold mt-12 mb-5 pb-2 border-b border-neutral-200/50 dark:border-neutral-800/60 text-[#1a1a1a] dark:text-[#f3f4f6] transition-theme">${trimmed.slice(3)}</h2>`;
+          } else if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+            if (!insideUl) {
+              htmlOutput += '<ul class="my-6 space-y-2 list-disc pl-6 text-neutral-700 dark:text-neutral-300 transition-theme">';
+              insideUl = true;
+            }
+            htmlOutput += `<li class="text-lg md:text-xl font-sans leading-relaxed tracking-wide">${trimmed.slice(2)}</li>`;
+          } else if (/^\d+\.\s/.test(trimmed)) {
+            if (insideUl) { htmlOutput += '</ul>'; insideUl = false; }
+            const match = trimmed.match(/^(\d+)\.\s(.*)/);
+            if (match) {
+              htmlOutput += `
+                <div class="flex gap-3 my-3 text-lg md:text-xl font-sans leading-relaxed text-neutral-700 dark:text-neutral-300 transition-theme">
+                  <span class="font-mono font-bold text-emerald-600 dark:text-emerald-400 select-none">${match[1]}.</span>
+                  <p class="flex-1 m-0">${match[2]}</p>
+                </div>
+              `;
+            }
+          } else {
+            if (insideUl) { htmlOutput += '</ul>'; insideUl = false; }
+            htmlOutput += `<p class="text-lg md:text-xl font-sans text-neutral-700 dark:text-neutral-300 leading-relaxed md:leading-loose tracking-wide mb-6 transition-theme">${line}</p>`;
+          }
+        });
+
+        if (insideUl) {
+          htmlOutput += '</ul>';
+        }
+        return htmlOutput;
+      }
+
+      // 4. Content retrieval of parameters
+      async function loadPostDetails() {
+        const loadingElement = document.getElementById('loading');
+        const errorBox = document.getElementById('error_box');
+        const errorMessage = document.getElementById('error_message');
+        const articleContainer = document.getElementById('article_container');
+
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const postId = urlParams.get('id');
+
+          if (!postId) {
+            throw new Error('ID artikel tidak disediakan pada parameter URL (Gunakan ?id=nama-artikel).');
+          }
+
+          // Fetch local posts.json
+          const response = await fetch('./posts.json');
+          if (!response.ok) {
+            throw new Error('Gagal memuat database artikel statis (posts.json).');
+          }
+
+          const posts = await response.json();
+          const activePost = posts.find(p => p.id === postId);
+
+          if (!activePost) {
+            throw new Error(`Artikel dengan ID "${postId}" tidak dapat ditemukan.`);
+          }
+
+          // Assign text data to elements beautifully
+          document.title = `${activePost.title} - Ahmad Choirun Najib`;
+          document.getElementById('post_category').textContent = `// ${activePost.category.toUpperCase()}`;
+          document.getElementById('post_title').textContent = activePost.title;
+          document.getElementById('post_date').textContent = activePost.date;
+          document.getElementById('post_readtime').textContent = `${activePost.readTime} Bacaan`;
+          
+          const imageElement = document.getElementById('post_image');
+          imageElement.src = activePost.image;
+          imageElement.alt = activePost.title;
+
+          // Compile Markdown
+          document.getElementById('post_content').innerHTML = translateMarkdownHTML(activePost.content);
+
+          // Hide loader and show post content
+          loadingElement.classList.add('hidden');
+          articleContainer.classList.remove('hidden');
+
+        } catch (err) {
+          loadingElement.classList.add('hidden');
+          errorMessage.textContent = err.message || 'Terjadi kesalahan sistem.';
+          errorBox.classList.remove('hidden');
+        }
+      }
+
+      // Boot handlers
+      window.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        loadPostDetails();
+      });
+    </script>
+  </body>
+</html>
