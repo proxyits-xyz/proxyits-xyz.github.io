@@ -1,15 +1,5 @@
 [
   {
-    "id": "test",
-    "title": "Test",
-    "excerpt": "Test",
-    "content": "Ini adalah test",
-    "category": "Tech",
-    "date": "25 Mei 2026",
-    "readTime": "1 Menit",
-    "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80"
-  },
-  {
     "id": "ekonomi-digital-indonesia-fintech",
     "title": "Menavigasi Gelombang Ekonomi Digital: Masa Depan Fintech dan Skalabilitas Arsitektur Backend",
     "excerpt": "Menelaah korelasi dinamis antara pertumbuhan ekonomi digital Indonesia dengan pentingnya arsitektur microservices, ketahanan database, dan pemrosesan data real-time pada layanan keuangan masa kini.",
