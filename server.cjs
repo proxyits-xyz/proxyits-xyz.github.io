@@ -151,6 +151,7 @@ async function startServer() {
       server: { middlewareMode: true },
       appType: "spa"
     });
+    app.use("/img", import_express.default.static(import_path.default.join(process.cwd(), "img")));
     app.use(vite.middlewares);
   } else {
     console.log("Starting server in production mode...");
