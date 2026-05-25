@@ -58,6 +58,34 @@ async function startServer() {
       res.status(404).send("File project.zip tidak ditemukan. Silakan lakukan 'npm run build' terlebih dahulu untuk generate.");
     }
   });
+  app.get("/api/seo-config", (req, res) => {
+    const filePath = import_path.default.join(process.cwd(), "seo-config.json");
+    const publicPath = import_path.default.join(process.cwd(), "public", "seo-config.json");
+    if (import_fs.default.existsSync(filePath)) {
+      res.json(JSON.parse(import_fs.default.readFileSync(filePath, "utf-8")));
+    } else if (import_fs.default.existsSync(publicPath)) {
+      res.json(JSON.parse(import_fs.default.readFileSync(publicPath, "utf-8")));
+    } else {
+      res.json({});
+    }
+  });
+  app.post("/api/seo-config", (req, res) => {
+    try {
+      const config = req.body;
+      const filePath = import_path.default.join(process.cwd(), "seo-config.json");
+      const publicPath = import_path.default.join(process.cwd(), "public", "seo-config.json");
+      import_fs.default.writeFileSync(filePath, JSON.stringify(config, null, 2), "utf-8");
+      if (!import_fs.default.existsSync(import_path.default.join(process.cwd(), "public"))) {
+        import_fs.default.mkdirSync(import_path.default.join(process.cwd(), "public"), { recursive: true });
+      }
+      import_fs.default.writeFileSync(publicPath, JSON.stringify(config, null, 2), "utf-8");
+      console.log("Successfully saved updated SEO configurations.");
+      return res.json({ success: true });
+    } catch (error) {
+      console.error("Error saving SEO configuration:", error);
+      return res.status(500).json({ error: error.message });
+    }
+  });
   app.get("/api/download/posts", (req, res) => {
     const filePath = import_path.default.join(process.cwd(), "posts.json");
     const publicPath = import_path.default.join(process.cwd(), "public", "posts.json");
