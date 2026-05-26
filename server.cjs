@@ -105,18 +105,6 @@ async function startServer() {
           error: "Field 'title', 'excerpt', 'content', 'category', dan 'readTime' wajib diisi!"
         });
       }
-      const id = slugify(title) || `post-${Date.now()}`;
-      const date = formatIdnDate(/* @__PURE__ */ new Date());
-      const newPost = {
-        id,
-        title,
-        excerpt,
-        content,
-        category,
-        date,
-        readTime,
-        image: image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80"
-      };
       const publicPath = import_path.default.join(process.cwd(), "public", "posts.json");
       const rootPath = import_path.default.join(process.cwd(), "posts.json");
       let posts = [];
@@ -133,6 +121,24 @@ async function startServer() {
           console.error("Error reading posts.json, resetting array");
         }
       }
+      let id = slugify(title) || `post-${Date.now()}`;
+      const idBase = id;
+      let counter = 1;
+      while (posts.some((p) => p.id === id)) {
+        counter++;
+        id = `${idBase}-${counter}`;
+      }
+      const date = formatIdnDate(/* @__PURE__ */ new Date());
+      const newPost = {
+        id,
+        title,
+        excerpt,
+        content,
+        category,
+        date,
+        readTime,
+        image: image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80"
+      };
       posts.unshift(newPost);
       import_fs.default.writeFileSync(publicPath, JSON.stringify(posts, null, 2), "utf-8");
       import_fs.default.writeFileSync(rootPath, JSON.stringify(posts, null, 2), "utf-8");
@@ -142,6 +148,89 @@ async function startServer() {
       console.error("Error saving post:", error);
       return res.status(500).json({
         error: "Terjadi kesalahan internal ketika menyimpan artikel baru: " + error.message
+      });
+    }
+  });
+  app.put("/api/posts/:id", (req, res) => {
+    try {
+      const { id } = req.params;
+      const { title, excerpt, content, category, readTime, image } = req.body;
+      if (!title || !excerpt || !content || !category || !readTime) {
+        return res.status(400).json({
+          error: "Field 'title', 'excerpt', 'content', 'category', dan 'readTime' wajib diisi!"
+        });
+      }
+      const publicPath = import_path.default.join(process.cwd(), "public", "posts.json");
+      const rootPath = import_path.default.join(process.cwd(), "posts.json");
+      let posts = [];
+      if (import_fs.default.existsSync(publicPath)) {
+        try {
+          posts = JSON.parse(import_fs.default.readFileSync(publicPath, "utf-8"));
+        } catch (e) {
+          console.error("Error reading public/posts.json", e);
+        }
+      } else if (import_fs.default.existsSync(rootPath)) {
+        try {
+          posts = JSON.parse(import_fs.default.readFileSync(rootPath, "utf-8"));
+        } catch (e) {
+          console.error("Error reading posts.json", e);
+        }
+      }
+      const postIndex = posts.findIndex((p) => p.id === id);
+      if (postIndex === -1) {
+        return res.status(404).json({ error: "Post tidak ditemukan" });
+      }
+      posts[postIndex] = {
+        ...posts[postIndex],
+        title,
+        excerpt,
+        content,
+        category,
+        readTime,
+        image: image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80"
+      };
+      import_fs.default.writeFileSync(publicPath, JSON.stringify(posts, null, 2), "utf-8");
+      import_fs.default.writeFileSync(rootPath, JSON.stringify(posts, null, 2), "utf-8");
+      console.log(`Successfully updated post: ${id}`);
+      return res.json({ success: true, post: posts[postIndex] });
+    } catch (error) {
+      console.error("Error updating post:", error);
+      return res.status(500).json({
+        error: "Terjadi kesalahan ketika memperbarui artikel: " + error.message
+      });
+    }
+  });
+  app.delete("/api/posts/:id", (req, res) => {
+    try {
+      const { id } = req.params;
+      const publicPath = import_path.default.join(process.cwd(), "public", "posts.json");
+      const rootPath = import_path.default.join(process.cwd(), "posts.json");
+      let posts = [];
+      if (import_fs.default.existsSync(publicPath)) {
+        try {
+          posts = JSON.parse(import_fs.default.readFileSync(publicPath, "utf-8"));
+        } catch (e) {
+          console.error("Error reading public/posts.json", e);
+        }
+      } else if (import_fs.default.existsSync(rootPath)) {
+        try {
+          posts = JSON.parse(import_fs.default.readFileSync(rootPath, "utf-8"));
+        } catch (e) {
+          console.error("Error reading posts.json", e);
+        }
+      }
+      const filteredPosts = posts.filter((p) => p.id !== id);
+      if (posts.length === filteredPosts.length) {
+        return res.status(404).json({ error: "Post tidak ditemukan" });
+      }
+      import_fs.default.writeFileSync(publicPath, JSON.stringify(filteredPosts, null, 2), "utf-8");
+      import_fs.default.writeFileSync(rootPath, JSON.stringify(filteredPosts, null, 2), "utf-8");
+      console.log(`Successfully deleted post: ${id}`);
+      return res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting post:", error);
+      return res.status(500).json({
+        error: "Terjadi kesalahan ketika menghapus artikel: " + error.message
       });
     }
   });

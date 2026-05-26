@@ -1,12 +1,22 @@
 [
   {
+    "id": "test",
+    "title": "Test",
+    "excerpt": "Test",
+    "content": "Test",
+    "category": "Tech",
+    "date": "26 Mei 2026",
+    "readTime": "1 Menit",
+    "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80"
+  },
+  {
     "id": "ekonomi-digital-indonesia-fintech",
-    "title": "Menavigasi Gelombang Ekonomi Digital: Masa Depan Fintech dan Skalabilitas Arsitektur Backend",
+    "title": "ABC Menavigasi Gelombang Ekonomi Digital: Masa Depan Fintech dan Skalabilitas Arsitektur Backend",
     "excerpt": "Menelaah korelasi dinamis antara pertumbuhan ekonomi digital Indonesia dengan pentingnya arsitektur microservices, ketahanan database, dan pemrosesan data real-time pada layanan keuangan masa kini.",
-    "content": "### Landas Pacu Indonesia Menuju Raksasa Ekonomi Digital\n\nIndonesia sedang berada di garda depan gelombang digitalisasi Asia Tenggara. Dorongan inklusi keuangan yang pesat memunculkan berbagai inovasi finansial—mulai dari pembayaran digital, peer-to-peer (P2P) lending, wealth-tech, hingga perbankan digital (digital banking). Namun, di balik antarmuka aplikasi seluler yang menawan dan kemudahan transaksi sekali klik, terdapat sebuah kompleksitas arsitektur backend yang harus bekerja ekstra keras untuk melayani jutaan transaksi per detik secara simultan.\n\nBagaimana arsitektur backend dan inovasi IT dapat secara langsung menyokong kestabilan makroekonomi dan inklusi keuangan?\n\n### Tantangan Utama Skalabilitas Layanan Keuangan\n\nDalam sistem finansial atau fintech modern, keandalan sistem (*reliability*), integritas transaksi (*consistency*), dan kecepatan respon (*latency*) tidak bisa dinegosiasikan. Tiga pilar utama pengembang sistem backend dalam menopang ekonomi digital mencakup:\n\n1. **Penerapan Microservices**: Berbeda dengan arsitektur monolitik tradisional, arsitektur microservices memisahkan fungsi-fungsi esensial (seperti autentikasi, kalkulasi saldo, pemrosesan gerbang pembayaran, dan riwayat transaksi) ke dalam service-service independen.\n2. **Manajemen Database Terdistribusi**: Pemanfaatan database hibrida (PostgreSQL untuk konsistensi transaksi ACID tingkat tinggi, digabungkan dengan NoSQL seperti MongoDB untuk skalabilitas riwayat transaksi, serta Redis untuk antrean pesan cepat) membantu menjamin data tercatat dengan presisi.\n3. **Sistem Antrean Pesan (Message Brokering)**: Ketika jutaan pengguna melakukan transaksi di waktu bersamaan, backend menggunakan Apache Kafka atau RabbitMQ untuk menahan beban kejut transaksi (*traffic spike*).\n\n### Dari Akuisisi Data hingga Keputusan Bisnis\n\nEkonomi digital modern sangat bergantung pada **Data Acquisition** dan **Data Analytics**. Data transaksi dianalisis untuk menghasilkan pola perilaku pengguna yang berharga. Analisis ini melahirkan kecerdasan buatan (*AI-driven business model*) yang mampu memprediksi tren konsumsi masyarakat secara real-time.",
+    "content": "### ABC Landas Pacu Indonesia Menuju Raksasa Ekonomi Digital\n\nIndonesia sedang berada di garda depan gelombang digitalisasi Asia Tenggara. Dorongan inklusi keuangan yang pesat memunculkan berbagai inovasi finansial—mulai dari pembayaran digital, peer-to-peer (P2P) lending, wealth-tech, hingga perbankan digital (digital banking). Namun, di balik antarmuka aplikasi seluler yang menawan dan kemudahan transaksi sekali klik, terdapat sebuah kompleksitas arsitektur backend yang harus bekerja ekstra keras untuk melayani jutaan transaksi per detik secara simultan.\n\nBagaimana arsitektur backend dan inovasi IT dapat secara langsung menyokong kestabilan makroekonomi dan inklusi keuangan?\n\n### Tantangan Utama Skalabilitas Layanan Keuangan\n\nDalam sistem finansial atau fintech modern, keandalan sistem (*reliability*), integritas transaksi (*consistency*), dan kecepatan respon (*latency*) tidak bisa dinegosiasikan. Tiga pilar utama pengembang sistem backend dalam menopang ekonomi digital mencakup:\n\n1. **Penerapan Microservices**: Berbeda dengan arsitektur monolitik tradisional, arsitektur microservices memisahkan fungsi-fungsi esensial (seperti autentikasi, kalkulasi saldo, pemrosesan gerbang pembayaran, dan riwayat transaksi) ke dalam service-service independen.\n2. **Manajemen Database Terdistribusi**: Pemanfaatan database hibrida (PostgreSQL untuk konsistensi transaksi ACID tingkat tinggi, digabungkan dengan NoSQL seperti MongoDB untuk skalabilitas riwayat transaksi, serta Redis untuk antrean pesan cepat) membantu menjamin data tercatat dengan presisi.\n3. **Sistem Antrean Pesan (Message Brokering)**: Ketika jutaan pengguna melakukan transaksi di waktu bersamaan, backend menggunakan Apache Kafka atau RabbitMQ untuk menahan beban kejut transaksi (*traffic spike*).\n\n### Dari Akuisisi Data hingga Keputusan Bisnis\n\nEkonomi digital modern sangat bergantung pada **Data Acquisition** dan **Data Analytics**. Data transaksi dianalisis untuk menghasilkan pola perilaku pengguna yang berharga. Analisis ini melahirkan kecerdasan buatan (*AI-driven business model*) yang mampu memprediksi tren konsumsi masyarakat secara real-time.",
     "category": "Ekonomi",
     "date": "23 Mei 2026",
-    "readTime": "5 Menit",
+    "readTime": "2 Menit",
     "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -110,7 +120,7 @@
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
   },
   {
-    "id": "filosofi-clean-code-developer",
+    "id": "filosofi-clean-code-developer-kehidupan",
     "title": "Filosofi Clean Code: Menulis Program yang Dapat Dimengerti Manusia",
     "excerpt": "Mengapa kualitas kode sumber tidak hanya dinilai dari performa kompilasi komputer, melainkan kemudahan pemeliharaan oleh rekan tim developer.",
     "content": "### Komputer Bisa Membaca Kode Apa Saja; Manusia Tidak\n\nMartin Fowler pernah menulis: 'Semua orang bodoh bisa menulis kode yang dapat dimengerti komputer. Programmer yang baik menulis kode yang dapat dimengerti manusia.'\n\nMenulis kode yang bersih (*clean code*) adalah investasi jangka panjang untuk memangkas utang teknis (*technical debt*) dan mempermudah penambahan fitur di masa mendatang.",
